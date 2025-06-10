@@ -1,4 +1,4 @@
-package com.example.learnjetpackcompose.ui.loginscreen
+package com.example.learnjetpackcompose.ui.screens.loginscreen
 
 import android.util.Log
 import com.example.learnjetpackcompose.R

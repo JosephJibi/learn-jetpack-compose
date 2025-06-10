@@ -5,7 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.learnjetpackcompose.constants.Routes
-import com.example.learnjetpackcompose.ui.loginscreen.LoginScreen
+import com.example.learnjetpackcompose.ui.screens.loginscreen.LoginScreen
 import com.example.learnjetpackcompose.ui.screens.homescreen.HomeScreen
 
 @Composable
