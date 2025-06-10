@@ -39,3 +39,7 @@ local.properties
 # Swap files
 *.swp
 *.backup
+
+.gradle/
+.idea/
+build/

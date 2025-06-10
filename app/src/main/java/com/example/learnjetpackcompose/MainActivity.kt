@@ -13,6 +13,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import com.example.learnjetpackcompose.constants.Routes
+import com.example.learnjetpackcompose.ui.loginscreen.LoginScreen
 import com.example.learnjetpackcompose.ui.screens.homescreen.HomeScreen
 import com.example.learnjetpackcompose.ui.theme.LearnJetPackComposeTheme
 
@@ -21,17 +26,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            LearnJetPackComposeTheme {
-                Surface (modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background){
-                    HomeScreen()
-                }
-//                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-//                    Greeting(
-//                        name = "Android",
-//                        modifier = Modifier.padding(innerPadding)
-//                    )
-//                }
-            }
+            AppNavigation()
         }
     }
 }
@@ -39,8 +34,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello $name!",
-        modifier = modifier
+        text = "Hello $name!", modifier = modifier
     )
 }
 
@@ -51,3 +45,17 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
+
+//LearnJetPackComposeTheme {
+//    Surface (modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background){
+//        HomeScreen()
+//    }
+// Need to check difference between surface and Scaffold
+////                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+////                    Greeting(
+////                        name = "Android",
+////                        modifier = Modifier.padding(innerPadding)
+////                    )
+////                }
+//}

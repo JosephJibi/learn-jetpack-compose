@@ -25,14 +25,14 @@ import com.example.learnjetpackcompose.ui.theme.LearnJetPackComposeTheme
 //}
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier, name: String) {
     var isEmergencyAcive by remember { mutableStateOf(false) }
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-
+    Text("Hello $name, Welcome...")
         if(isEmergencyAcive) {
     Text("EMERGENCY ACTIVE!")
             Text("Coordinates: Lat 34.00, Long 71.00 (Example)")
@@ -56,7 +56,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Composable
 fun HomeScreenPreview() {
     LearnJetPackComposeTheme() {
-        HomeScreen()
+        HomeScreen(name = "Jibi")
     }
 
 }
