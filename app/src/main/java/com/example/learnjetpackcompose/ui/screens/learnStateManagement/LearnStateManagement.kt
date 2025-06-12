@@ -8,6 +8,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
@@ -19,16 +20,25 @@ import kotlin.math.log
 
 // remember -> persist state on recomposition
 // rememberSaveable -> persist state on both recomposition and configuration change (e.g. rotation)
+// ViewModel and LiveData -> Hoist the state for re-usability
 
 @Composable
-fun LearnStateManagementScreen () {
+fun LearnStateManagementScreen(viewModel: LearnStateManagementModel) {
     Log.i("MyLog", "Working")
-    var userName by rememberSaveable { mutableStateOf("") }
+    val userName by viewModel.name.observeAsState(initial = "")
+    val surName by viewModel.name.observeAsState(initial = "")
 
-    Column (modifier = Modifier.fillMaxSize(), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
-        Title(userName)
+    Column(
+        modifier = Modifier.fillMaxSize(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
+    ) {
+        Title("$userName $surName")
         InputBox(userName, handleNameChange = {
-            userName = it
+          viewModel.onUserNameUpdate(newName = it)
+        })
+        InputBox(surName, handleNameChange = {
+            viewModel.onSurNameUpdate(newName = it)
         })
         SampleText()
     }
@@ -44,9 +54,9 @@ fun Title(userName: String) {
 fun InputBox(userName: String, handleNameChange: (String) -> Unit) {
     Log.i("MyLog", "Working 2")
 
-    OutlinedTextField(value = userName,  label = { Text("Enter your name") }, onValueChange = {
-     handleNameChange(it)
-    } )
+    OutlinedTextField(value = userName, label = { Text("Enter your name") }, onValueChange = {
+        handleNameChange(it)
+    })
 }
 
 @Composable
